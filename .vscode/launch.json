@@ -7,38 +7,40 @@
         {
             "type": "lldb",
             "request": "launch",
-            "name": "Debug executable 'rust-end-to-end-application'",
+            "name": "Debug executable 'jwt-decode'",
             "cargo": {
                 "args": [
                     "build",
-                    "--bin=rust-end-to-end-application",
-                    "--package=rust-end-to-end-application"
+                    "--bin=jwt-decode",
+                    "--package=jwt-decode"
                 ],
                 "filter": {
-                    "name": "rust-end-to-end-application",
+                    "name": "jwt-decode",
                     "kind": "bin"
                 }
             },
-            "args": [],
+            "args": [
+                "<PUT JWT HERE>"
+            ],
             "cwd": "${workspaceFolder}",
             "env": {
                 "RUST_BACKTRACE": "1",
-                "RUST_LOG": "rust_end_to_end_application=trace"
+                "RUST_LOG": "jwt_decode=trace"
             }
         },
         {
             "type": "lldb",
             "request": "launch",
-            "name": "Debug unit tests in executable 'rust-end-to-end-application'",
+            "name": "Debug unit tests in executable 'jwt-decode'",
             "cargo": {
                 "args": [
                     "test",
                     "--no-run",
-                    "--bin=rust-end-to-end-application",
-                    "--package=rust-end-to-end-application"
+                    "--bin=jwt-decode",
+                    "--package=jwt-decode"
                 ],
                 "filter": {
-                    "name": "rust-end-to-end-application",
+                    "name": "jwt-decode",
                     "kind": "bin"
                 }
             },
@@ -46,7 +48,7 @@
             "cwd": "${workspaceFolder}",
             "env": {
                 "RUST_BACKTRACE": "1",
-                "RUST_LOG": "rust_end_to_end_application=trace"
+                "RUST_LOG": "jwt_decode=trace"
             }
         }
     ]
