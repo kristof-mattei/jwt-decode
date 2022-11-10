@@ -1,5 +1,3 @@
-use std::borrow::Cow;
-
 fn main() -> Result<(), anyhow::Error> {
     let arguments = std::env::args().into_iter().collect::<Vec<_>>();
 
