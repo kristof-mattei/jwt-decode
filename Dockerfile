@@ -22,13 +22,13 @@ WORKDIR /build
 RUN cargo new jwt-decode
 WORKDIR /build/jwt-decode
 COPY Cargo.toml Cargo.lock ./
-RUN --mount=type=cache,target=/build/jwt-decode/target \
+RUN --mount=type=cache,id=cargo-only,target=/build/jwt-decode/target \
     cargo build --release --target ${TARGET}
 
 # now we copy in the source which is more prone to changes and build it
 COPY src ./src
 # --release not needed, it is implied with install
-RUN --mount=type=cache,target=/build/jwt-decode/target \
+RUN --mount=type=cache,id=full-build,target=/build/jwt-decode/target \
     cargo install --path . --target ${TARGET} --root /output
 
 FROM alpine:3.17.1@sha256:f271e74b17ced29b915d351685fd4644785c6d1559dd1f2d4189a5e851ef753a
