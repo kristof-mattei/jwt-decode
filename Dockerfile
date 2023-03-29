@@ -31,7 +31,7 @@ COPY src ./src
 RUN --mount=type=cache,id=full-build,target=/build/jwt-decode/target \
     cargo install --path . --target ${TARGET} --root /output
 
-FROM alpine:3.17.2@sha256:ff6bdca1701f3a8a67e328815ff2346b0e4067d32ec36b7992c1fdc001dc8517
+FROM alpine:3.17.3@sha256:37a62b3fc99718d0ec21b4ea2db37cd7ee50c4e879d640ab6758cbac610320ae
 
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 USER appuser
