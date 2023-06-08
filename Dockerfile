@@ -1,6 +1,8 @@
 FROM rust:1.70.0@sha256:cf5513bb19a7a59fd271db14b4e71ed5d91df95c4cb1f431ac131231f2e6104a as builder
 
-ENV TARGET=x86_64-unknown-linux-musl
+ARG TARGET=x86_64-unknown-linux-musl
+ARG APPLICATION_NAME
+
 RUN rustup target add ${TARGET}
 
 RUN rm -f /etc/apt/apt.conf.d/docker-clean; echo 'Binary::apt::APT::Keep-Downloaded-Packages "true";' > /etc/apt/apt.conf.d/keep-cache
@@ -19,23 +21,27 @@ RUN --mount=type=cache,target=/var/cache/apt --mount=type=cache,target=/var/lib/
 # This allows us to copy in the source in a different layer which in turn allows us to leverage Docker's layer caching
 # That means that if our dependencies don't change rebuilding is much faster
 WORKDIR /build
-RUN cargo new jwt-decode
-WORKDIR /build/jwt-decode
+RUN cargo new ${APPLICATION_NAME}
+WORKDIR /build/${APPLICATION_NAME}
 COPY Cargo.toml Cargo.lock ./
-RUN --mount=type=cache,id=cargo-only,target=/build/jwt-decode/target \
+RUN --mount=type=cache,id=cargo-dependencies,target=/build/${APPLICATION_NAME}/target \
     cargo build --release --target ${TARGET}
 
 # now we copy in the source which is more prone to changes and build it
 COPY src ./src
 # --release not needed, it is implied with install
-RUN --mount=type=cache,id=full-build,target=/build/jwt-decode/target \
+RUN --mount=type=cache,id=full-build,target=/build/${APPLICATION_NAME}/target \
     cargo install --path . --target ${TARGET} --root /output
 
 FROM alpine:3.18.0@sha256:02bb6f428431fbc2809c5d1b41eab5a68350194fb508869a33cb1af4444c9b11
+
+ARG APPLICATION_NAME
 
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 USER appuser
 
 WORKDIR /app
-COPY --from=builder /output/bin/jwt-decode /app
-ENTRYPOINT ["/app/jwt-decode"]
+COPY --from=builder /output/bin/${APPLICATION_NAME} /app/entrypoint
+
+ENV RUST_BACKTRACE=full
+ENTRYPOINT ["/app/entrypoint"]
