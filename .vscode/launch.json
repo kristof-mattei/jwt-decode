@@ -18,7 +18,7 @@
             "args": ["<PUT JWT HERE>"],
             "cwd": "${workspaceFolder}",
             "env": {
-                "RUST_BACKTRACE": "1",
+                "RUST_BACKTRACE": "full",
                 "RUST_LOG": "jwt_decode=trace"
             }
         },
@@ -41,7 +41,7 @@
             "args": [],
             "cwd": "${workspaceFolder}",
             "env": {
-                "RUST_BACKTRACE": "1",
+                "RUST_BACKTRACE": "full",
                 "RUST_LOG": "jwt_decode=trace"
             }
         }
