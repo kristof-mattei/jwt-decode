@@ -10,10 +10,16 @@ use base64::{engine::general_purpose, Engine};
 fn main() -> Result<(), anyhow::Error> {
     let arguments = std::env::args();
 
-    let argument = arguments
-        .into_iter()
-        .nth(1)
-        .ok_or_else(|| anyhow::Error::msg("Missing argument"))?;
+    let argument = if let Some(arg) = arguments.into_iter().nth(1) {
+        arg
+    } else {
+        let mut buffer = String::new();
+
+        let stdin = std::io::stdin();
+        stdin.read_line(&mut buffer)?;
+
+        buffer
+    };
 
     let (header, payload, _signature) = split_into_parts(&argument);
 
