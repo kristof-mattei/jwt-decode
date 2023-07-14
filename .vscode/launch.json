@@ -19,7 +19,7 @@
             "cwd": "${workspaceFolder}",
             "env": {
                 "RUST_BACKTRACE": "full",
-                "RUST_LOG": "jwt_decode=trace"
+                "RUST_LOG": "trace,jwt_decode=trace"
             }
         },
         {
@@ -42,7 +42,7 @@
             "cwd": "${workspaceFolder}",
             "env": {
                 "RUST_BACKTRACE": "full",
-                "RUST_LOG": "jwt_decode=trace"
+                "RUST_LOG": "trace,jwt_decode=trace"
             }
         }
     ]

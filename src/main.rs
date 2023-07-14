@@ -7,7 +7,9 @@
 
 use base64::{engine::general_purpose, Engine};
 
-fn main() -> Result<(), anyhow::Error> {
+fn main() -> Result<(), color_eyre::Report> {
+    color_eyre::install()?;
+
     let arguments = std::env::args();
 
     let argument = if let Some(arg) = arguments.into_iter().nth(1) {
@@ -42,7 +44,7 @@ fn split_into_parts(jwt: &str) -> (&str, &str, &str) {
     )
 }
 
-fn decode(val: &str) -> Result<serde_json::Value, anyhow::Error> {
+fn decode(val: &str) -> Result<serde_json::Value, color_eyre::Report> {
     let decoded = general_purpose::URL_SAFE_NO_PAD.decode(val)?;
 
     let s = serde_json::from_slice::<serde_json::Value>(&decoded)?;
@@ -50,7 +52,7 @@ fn decode(val: &str) -> Result<serde_json::Value, anyhow::Error> {
     Ok(s)
 }
 
-fn pretty_print(value: &serde_json::Value) -> Result<(), anyhow::Error> {
+fn pretty_print(value: &serde_json::Value) -> Result<(), color_eyre::Report> {
     println!("{}", serde_json::to_string_pretty(value)?);
 
     Ok(())
