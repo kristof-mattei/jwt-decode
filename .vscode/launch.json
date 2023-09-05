@@ -18,9 +18,10 @@
             "args": ["<PUT JWT HERE>"],
             "cwd": "${workspaceFolder}",
             "env": {
-                "RUST_BACKTRACE": "full",
-                "RUST_LOG": "trace,jwt_decode=trace"
-            }
+                "RUST_BACKTRACE": "1",
+                "RUST_LOG": "debug,jwt_decode=trace"
+            },
+            "terminal": "console"
         },
         {
             "type": "lldb",
@@ -41,9 +42,34 @@
             "args": [],
             "cwd": "${workspaceFolder}",
             "env": {
-                "RUST_BACKTRACE": "full",
-                "RUST_LOG": "trace,jwt_decode=trace"
-            }
+                "RUST_BACKTRACE": "1",
+                "RUST_LOG": "debug,jwt_decode=trace"
+            },
+            "terminal": "console"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug integration test 'integration_tests'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--test=integration_tests",
+                    "--package=jwt-decode"
+                ],
+                "filter": {
+                    "name": "integration_tests",
+                    "kind": "test"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "RUST_BACKTRACE": "1",
+                "RUST_LOG": "debug,jwt_decode=trace"
+            },
+            "terminal": "console"
         }
     ]
 }
