@@ -17,7 +17,7 @@ repository = "https://github.com/kristof-mattei/jwt-decode"
 coverage = []
 
 [dependencies]
-base64 = "0.21.5"
+base64 = "0.21.6"
 color-eyre = { version = "0.6.2", features = ["issue-url"] }
 serde_json = "1.0.111"
 
