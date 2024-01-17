@@ -1,13 +1,5 @@
-#![deny(clippy::all)]
-#![deny(clippy::pedantic)]
-#![deny(clippy::cargo)]
-#![deny(warnings)]
-// exceptions
-#![deny(let_underscore_drop)]
-#![deny(non_ascii_idents)]
-#![allow(clippy::uninlined_format_args)]
-
-use base64::{engine::general_purpose, Engine};
+use base64::engine::general_purpose;
+use base64::Engine;
 
 fn main() -> Result<(), color_eyre::Report> {
     color_eyre::install()?;
