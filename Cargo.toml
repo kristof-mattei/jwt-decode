@@ -32,7 +32,7 @@ opt-level = 3
 coverage = []
 
 [dependencies]
-base64 = "0.21.7"
+base64 = "0.22.0"
 color-eyre = { version = "0.6.2", features = ["issue-url"] }
 serde_json = "1.0.114"
 
