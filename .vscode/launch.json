@@ -9,13 +9,19 @@
             "request": "launch",
             "name": "Debug executable 'jwt-decode'",
             "cargo": {
-                "args": ["build", "--bin=jwt-decode", "--package=jwt-decode"],
+                "args": [
+                    "build",
+                    "--bin=jwt-decode",
+                    "--package=jwt-decode"
+                ],
                 "filter": {
                     "name": "jwt-decode",
                     "kind": "bin"
                 }
             },
-            "args": ["<PUT JWT HERE>"],
+            "args": [
+                "<PUT JWT HERE>"
+            ],
             "cwd": "${workspaceFolder}",
             "env": {
                 "RUST_BACKTRACE": "1",
