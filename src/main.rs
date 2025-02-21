@@ -1,5 +1,5 @@
-use base64::engine::general_purpose;
 use base64::Engine;
+use base64::engine::general_purpose;
 use color_eyre::eyre::Report;
 
 fn main() -> Result<(), color_eyre::Report> {
@@ -78,9 +78,18 @@ mod tests {
 
         let (header, payload, signature) = split_into_parts(input).expect("Invalid JWT");
 
-        assert_eq!(header, "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImM5NmRjODU4NTU2NDA5MWY0Y2NiMTUzOTQ4MGRkNjlmIn0");
-        assert_eq!(payload, "eyJleHAiOjE2NzM1NTk3ODQsImlhdCI6MTY3MzU1Nzk4NCwianRpIjoiNWE2ZGJhOTItNzI5YS00OWFlLTkyYzgtOWI0MDQ3NjkwMTVjIiwiaXNzIjoiaHR0cHM6Ly9hdXRoLmludC5tY2tpbnNleS5pZC9hdXRoL3JlYWxtcy9yIiwiYXVkIjoiaHR0cHM6Ly9zZG9sdXRpb25zLm1ja2luc2V5LmNvbS9taWQtaW50cy9hcGkiLCJzdWIiOiJjMzg2YWI3OC1hNjgwLTRlNjMtOGQwZi0wNmIyN2NmODkyMTkiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiI2ZGIzNGI0YS1kYjYzLTQwOGQtYmIzYi01OTMzN2M5NjczZDEiLCJhY3IiOiIxIiwic2NvcGUiOiJwcm9maWxlIGVtYWlsIn0");
-        assert_eq!(signature, "btjgRRZpXMSUGO9cEVBtetHFceYEeAfaKsuyirQ9mjG1UA9Ov9m5DDYJPP6vNB1mUBt805F6ugfXSPX0XBaAfJAWWdQtOk4gLTk0z7_of3cbm8QRE6x-WsE4ucl66lerSKlSNglaDb3gABGPqRp_o8eDmCjkFQH5_JBsoLUmc8t3GUkUyPMYRWap_zpy8nr0RSWIYvDSiwPyLKSQ9hiy7OxkU7USinQap5N6SlVGSenc4frfiIPwasVEncrSOeT75RakmOTgxyAilldShMXpWnJJIRkWmGnYEYglHOLA6sfprxwES4Qc5SK4exW_oDTqktDICtguZ68XXsVUs4JEbawRvc6zTlYqlo3oQMoEvDY0Aq35oJ3Nutq93W7oVOM4BN2d5idQmbCSkWBmcnriLOawP7TLQ8plhxs1v83c-M3A7SgqWo5kuk9b7PUn1TtXoDQokrG50EUO9MycmdPj0XyCTK-zKIgsr-Oy4byMrtREiqWzvz8XKzsE6nIwKfmGcQGukvmkNWSepC67CNHC0oGV5kEwo1Y7hR6f_3e26Lj-LuXzZL0D1Nx65qZJCa4Wu9rrn-F3afWqr9-ozG2gLmzYqLfKoLOhAAmy5NOJg9cqOARgqBJ1NZOzI64Mpybvei6AoXUKuXXHzvKadlhpj3Wrz0pAj2NdQbYzUPy6iGKA");
+        assert_eq!(
+            header,
+            "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImM5NmRjODU4NTU2NDA5MWY0Y2NiMTUzOTQ4MGRkNjlmIn0"
+        );
+        assert_eq!(
+            payload,
+            "eyJleHAiOjE2NzM1NTk3ODQsImlhdCI6MTY3MzU1Nzk4NCwianRpIjoiNWE2ZGJhOTItNzI5YS00OWFlLTkyYzgtOWI0MDQ3NjkwMTVjIiwiaXNzIjoiaHR0cHM6Ly9hdXRoLmludC5tY2tpbnNleS5pZC9hdXRoL3JlYWxtcy9yIiwiYXVkIjoiaHR0cHM6Ly9zZG9sdXRpb25zLm1ja2luc2V5LmNvbS9taWQtaW50cy9hcGkiLCJzdWIiOiJjMzg2YWI3OC1hNjgwLTRlNjMtOGQwZi0wNmIyN2NmODkyMTkiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiI2ZGIzNGI0YS1kYjYzLTQwOGQtYmIzYi01OTMzN2M5NjczZDEiLCJhY3IiOiIxIiwic2NvcGUiOiJwcm9maWxlIGVtYWlsIn0"
+        );
+        assert_eq!(
+            signature,
+            "btjgRRZpXMSUGO9cEVBtetHFceYEeAfaKsuyirQ9mjG1UA9Ov9m5DDYJPP6vNB1mUBt805F6ugfXSPX0XBaAfJAWWdQtOk4gLTk0z7_of3cbm8QRE6x-WsE4ucl66lerSKlSNglaDb3gABGPqRp_o8eDmCjkFQH5_JBsoLUmc8t3GUkUyPMYRWap_zpy8nr0RSWIYvDSiwPyLKSQ9hiy7OxkU7USinQap5N6SlVGSenc4frfiIPwasVEncrSOeT75RakmOTgxyAilldShMXpWnJJIRkWmGnYEYglHOLA6sfprxwES4Qc5SK4exW_oDTqktDICtguZ68XXsVUs4JEbawRvc6zTlYqlo3oQMoEvDY0Aq35oJ3Nutq93W7oVOM4BN2d5idQmbCSkWBmcnriLOawP7TLQ8plhxs1v83c-M3A7SgqWo5kuk9b7PUn1TtXoDQokrG50EUO9MycmdPj0XyCTK-zKIgsr-Oy4byMrtREiqWzvz8XKzsE6nIwKfmGcQGukvmkNWSepC67CNHC0oGV5kEwo1Y7hR6f_3e26Lj-LuXzZL0D1Nx65qZJCa4Wu9rrn-F3afWqr9-ozG2gLmzYqLfKoLOhAAmy5NOJg9cqOARgqBJ1NZOzI64Mpybvei6AoXUKuXXHzvKadlhpj3Wrz0pAj2NdQbYzUPy6iGKA"
+        );
     }
 
     #[test]
