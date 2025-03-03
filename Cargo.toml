@@ -40,7 +40,7 @@ base64 = "0.22.1"
 color-eyre = { git = "https://github.com/eyre-rs/eyre", rev = "c4ee249f7c51dc6452e8704ae8d117d90d6eeebc", features = [
     "issue-url",
 ] }
-serde_json = "1.0.139"
+serde_json = "1.0.140"
 
 # OpenSSL for musl
 # [target.'cfg(all(any(target_arch="x86_64", target_arch="aarch64"), target_os="linux", target_env="musl"))'.dependencies]
