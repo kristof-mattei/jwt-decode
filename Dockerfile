@@ -4,7 +4,7 @@ ARG APPLICATION_NAME
 
 RUN --mount=type=cache,id=apk-cache,target=/var/cache/apk,sharing=locked \
     apk --update add \
-    apk add bash make clang llvm perl
+    bash make clang llvm perl
 
 FROM rust-base AS rust-linux-amd64
 ARG TARGET=x86_64-unknown-linux-musl
