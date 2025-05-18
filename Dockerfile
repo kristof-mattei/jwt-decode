@@ -2,11 +2,9 @@ FROM --platform=${BUILDPLATFORM} rust:1.87.0-alpine AS rust-base
 
 ARG APPLICATION_NAME
 
-# borrowed (Ba Dum Tss!) from
-# https://github.com/pablodeymo/rust-musl-builder/blob/7a7ea3e909b1ef00c177d9eeac32d8c9d7d6a08c/Dockerfile#L48-L49
-RUN --mount=type=cache,id=apt-cache,target=/var/cache/apt,sharing=locked \
-    --mount=type=cache,id=apt-lib,target=/var/lib/apt,sharing=locked \
-    apk update && apk add bash make clang llvm perl
+RUN --mount=type=cache,id=apk-cache,target=/var/cache/apk,sharing=locked \
+    apk --update add \
+    apk add bash make clang llvm perl
 
 FROM rust-base AS rust-linux-amd64
 ARG TARGET=x86_64-unknown-linux-musl
