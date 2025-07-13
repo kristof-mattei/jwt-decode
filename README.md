@@ -29,3 +29,9 @@ echo "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6I
   "sub": "1234567890"
 }
 ```
+
+## License
+
+MIT, see [LICENSE](./LICENSE)
+
+`SPDX-License-Identifier: MIT`
