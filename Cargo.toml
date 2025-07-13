@@ -1,15 +1,15 @@
 [package]
 name = "jwt-decode"
-# don't change this, it's updated before an actual build by update-version.sh
 version = "0.0.0-development"
 edition = "2024"
 rust-version = "1.88.0"
 authors = ["Kristof Mattei"]
-description = "Rust seed application"
-license-file = "LICENSE"
-categories = ["starter", "seed"]
-keywords = ["integrity", "seed", "starter", "docker", "release"]
+description = "CLI JWT Decoder"
+license = "MIT"
+categories = ["command-line-utilities"]
+keywords = ["cli", "JWT", "Docker"]
 repository = "https://github.com/kristof-mattei/jwt-decode"
+include = ["src/**", "/LICENSE", "/LICENSE-*"]
 
 [lints.clippy]
 # don't stop from compiling / running
