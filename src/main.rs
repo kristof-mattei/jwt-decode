@@ -1,9 +1,24 @@
 use base64::Engine as _;
 use base64::engine::general_purpose;
-use color_eyre::eyre::Report;
+use color_eyre::eyre::{self, Report};
 
-fn main() -> Result<(), color_eyre::Report> {
+fn main() -> Result<(), eyre::Report> {
     color_eyre::install()?;
+
+    let name = env!("CARGO_PKG_NAME");
+    let version = env!("CARGO_PKG_VERSION");
+
+    println!(
+        "{} v{} - built for {}-{}",
+        name,
+        version,
+        std::env::var("TARGETARCH")
+            .as_deref()
+            .unwrap_or("unknown-arch"),
+        std::env::var("TARGETVARIANT")
+            .as_deref()
+            .unwrap_or("base variant")
+    );
 
     let argument = if let Some(arg) = std::env::args().nth(1) {
         arg
@@ -39,7 +54,7 @@ fn main() -> Result<(), color_eyre::Report> {
     Ok(())
 }
 
-fn split_into_parts(jwt: &str) -> Result<(&str, &str, &str), color_eyre::Report> {
+fn split_into_parts(jwt: &str) -> Result<(&str, &str, &str), eyre::Report> {
     let split = jwt.split('.').filter(|p| !p.is_empty()).collect::<Vec<_>>();
 
     if let &[a, b, c] = split.as_slice() {
@@ -52,7 +67,7 @@ fn split_into_parts(jwt: &str) -> Result<(&str, &str, &str), color_eyre::Report>
     }
 }
 
-fn decode(val: &str) -> Result<serde_json::Value, color_eyre::Report> {
+fn decode(val: &str) -> Result<serde_json::Value, eyre::Report> {
     let decoded = general_purpose::URL_SAFE_NO_PAD.decode(val)?;
 
     let s = serde_json::from_slice::<serde_json::Value>(&decoded)?;
@@ -60,7 +75,7 @@ fn decode(val: &str) -> Result<serde_json::Value, color_eyre::Report> {
     Ok(s)
 }
 
-fn pretty_print(value: &serde_json::Value) -> Result<(), color_eyre::Report> {
+fn pretty_print(value: &serde_json::Value) -> Result<(), eyre::Report> {
     println!("{}", serde_json::to_string_pretty(value)?);
 
     Ok(())
