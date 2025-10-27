@@ -1,9 +1,17 @@
 use base64::Engine as _;
 use base64::engine::general_purpose;
-use color_eyre::eyre::{self, Report};
+use color_eyre::config::HookBuilder;
+use color_eyre::eyre;
+use color_eyre::eyre::Report;
+
+#[global_allocator]
+static GLOBAL: mimalloc::MiMalloc = mimalloc::MiMalloc;
 
 fn main() -> Result<(), eyre::Report> {
-    color_eyre::install()?;
+    HookBuilder::default()
+        .capture_span_trace_by_default(true)
+        .display_env_section(false)
+        .install()?;
 
     let name = env!("CARGO_PKG_NAME");
     let version = env!("CARGO_PKG_VERSION");
