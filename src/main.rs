@@ -1,11 +1,30 @@
+mod build_env;
+
 use base64::Engine as _;
 use base64::engine::general_purpose;
 use color_eyre::config::HookBuilder;
 use color_eyre::eyre;
 use color_eyre::eyre::Report;
 
+use crate::build_env::get_build_env;
+
 #[global_allocator]
 static GLOBAL: mimalloc::MiMalloc = mimalloc::MiMalloc;
+
+fn print_header() {
+    const NAME: &str = env!("CARGO_PKG_NAME");
+    const VERSION: &str = env!("CARGO_PKG_VERSION");
+
+    let build_env = get_build_env();
+
+    println!(
+        "{} v{} - built for {} ({})",
+        NAME,
+        VERSION,
+        build_env.get_target(),
+        build_env.get_target_cpu().unwrap_or("base cpu variant"),
+    );
+}
 
 fn main() -> Result<(), eyre::Report> {
     HookBuilder::default()
@@ -13,20 +32,7 @@ fn main() -> Result<(), eyre::Report> {
         .display_env_section(false)
         .install()?;
 
-    let name = env!("CARGO_PKG_NAME");
-    let version = env!("CARGO_PKG_VERSION");
-
-    println!(
-        "{} v{} - built for {}-{}",
-        name,
-        version,
-        std::env::var("TARGETARCH")
-            .as_deref()
-            .unwrap_or("unknown-arch"),
-        std::env::var("TARGETVARIANT")
-            .as_deref()
-            .unwrap_or("base variant")
-    );
+    print_header();
 
     let argument = if let Some(arg) = std::env::args().nth(1) {
         arg
