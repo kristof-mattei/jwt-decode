@@ -5,18 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Debug executable 'jwt-decode'",
             "type": "lldb",
             "request": "launch",
-            "name": "Debug executable 'jwt-decode'",
             "cargo": {
-                "args": ["build", "--bin=jwt-decode", "--package=jwt-decode"],
-                "filter": {
-                    "name": "jwt-decode",
-                    "kind": "bin"
-                }
+                "args": ["run", "--bin=jwt-decode"]
             },
             "args": ["<PUT JWT HERE>"],
-            "cwd": "${workspaceFolder}",
             "env": {
                 "RUST_BACKTRACE": "1",
                 "RUST_LOG": "DEBUG,jwt_decode=TRACE"
@@ -25,23 +20,12 @@
             "terminal": "integrated"
         },
         {
-            "type": "lldb",
-            "request": "launch",
             "name": "Debug unit tests in executable 'jwt-decode'",
+            "type": "lldb",
+            "request": "launch",
             "cargo": {
-                "args": [
-                    "test",
-                    "--no-run",
-                    "--bin=jwt-decode",
-                    "--package=jwt-decode"
-                ],
-                "filter": {
-                    "name": "jwt-decode",
-                    "kind": "bin"
-                }
+                "args": ["test", "--bin=jwt-decode"]
             },
-            "args": [],
-            "cwd": "${workspaceFolder}",
             "env": {
                 "RUST_BACKTRACE": "1",
                 "RUST_LOG": "DEBUG,jwt_decode=TRACE"
@@ -50,23 +34,12 @@
             "terminal": "integrated"
         },
         {
+            "name": "Debug integration test 'integration_tests'",
             "type": "lldb",
             "request": "launch",
-            "name": "Debug integration test 'integration_tests'",
             "cargo": {
-                "args": [
-                    "test",
-                    "--no-run",
-                    "--test=integration_tests",
-                    "--package=jwt-decode"
-                ],
-                "filter": {
-                    "name": "integration_tests",
-                    "kind": "test"
-                }
+                "args": ["test", "--test=integration_tests"]
             },
-            "args": [],
-            "cwd": "${workspaceFolder}",
             "env": {
                 "RUST_BACKTRACE": "1",
                 "RUST_LOG": "DEBUG,jwt_decode=TRACE"
