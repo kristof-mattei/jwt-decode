@@ -98,6 +98,7 @@ fn pretty_print(value: &serde_json::Value) -> Result<(), eyre::Report> {
 #[cfg(test)]
 mod tests {
     use color_eyre::eyre;
+    use pretty_assertions::assert_eq;
     use serde_json::json;
 
     use crate::{decode, split_into_parts};
