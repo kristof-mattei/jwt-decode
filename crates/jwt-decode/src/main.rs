@@ -187,26 +187,5 @@ mod tests {
         let input = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImM5NmRjODU4NTU2NDA5MWY0Y2NiMTUzOTQ4MGRkNjlmIn0.eyJleHAiOjE2NzM1NTk3ODQsImlhdCI6MTY3MzU1Nzk4NCwianRpIjoiNWE2ZGJhOTItNzI5YS00OWFlLTkyYzgtOWI0MDQ3NjkwMTVjIiwiaXNzIjoiaHR0cHM6Ly9hdXRoLmlkZW50aXR5LXByb2ZpZGVyLmlkL2F1dGgvcmVhbG1zL3IiLCJhdWQiOiJodHRwczovL2FwcGxpY2F0aW9uLmNvbSIsInN1YiI6ImMzODZhYjc4LWE2ODAtNGU2My04ZDBmLTA2YjI3Y2Y4OTIxOSIsInR5cCI6IkJlYXJlciIsImF6cCI6IjZkYjM0YjRhLWRiNjMtNDA4ZC1iYjNiLTU5MzM3Yzk2NzNkMSIsImFjciI6IjEiLCJzY29wZSI6InByb2ZpbGUgZW1haWwifQ.tjgRRZpXMSUGO9cEVBtetHFceYEeAfaKsuyirQ9mjG1UA9Ov9m5DDYJPP6vNB1mUBt805F6ugfXSPX0XBaAfJAWWdQtOk4gLTk0z7_of3cbm8QRE6x-WsE4ucl66lerSKlSNglaDb3gABGPqRp_o8eDmCjkFQH5_JBsoLUmc8t3GUkUyPMYRWap_zpy8nr0RSWIYvDSiwPyLKSQ9hiy7OxkU7USinQap5N6SlVGSenc4frfiIPwasVEncrSOeT75RakmOTgxyAilldShMXpWnJJIRkWmGnYEYglHOLA6sfprxwES4Qc5SK4exW_oDTqktDICtguZ68XXsVUs4JEbaw";
 
         let (_header, _payload, _signature) = split_into_parts(input).expect("Invalid JWT");
-
-        // TODO
-        // let decoded_payload = decode(payload);
-
-        // assert!(decoded_payload.is_ok());
-
-        // assert_eq!(
-        //     decoded_payload.unwrap(),
-        //     json!({
-        //         "exp": 1_673_559_784,
-        //         "iat": 1_673_557_984,
-        //         "jti": "5a6dba92-729a-49ae-92c8-9b404769015c",
-        //         "iss": "https://auth.identity-profider.id/auth/realms/r",
-        //         "aud": "https://application.com",
-        //         "sub": "c386ab78-a680-4e63-8d0f-06b27cf89219",
-        //         "typ": "Bearer",
-        //         "azp": "6db34b4a-db63-408d-bb3b-59337c9673d1",
-        //         "acr": "1",
-        //         "scope": "profile email"
-        //     })
-        // );
     }
 }
