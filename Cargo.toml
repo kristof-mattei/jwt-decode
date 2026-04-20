@@ -14,8 +14,6 @@ keywords = ["cli", "JWT", "Docker"]
 repository = "https://github.com/kristof-mattei/jwt-decode"
 include = ["crates/**", "/LICENSE", "/LICENSE-*"]
 
-[workspace.dependencies]
-
 [workspace.metadata.spellcheck]
 config = "spellcheck.toml"
 
