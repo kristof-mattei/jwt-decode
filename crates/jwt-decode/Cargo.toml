@@ -16,7 +16,7 @@ build = "src/build.rs"
 default = []
 
 [dependencies]
-base64 = "=0.22.1"
+base64 = "=0.23.0"
 color-eyre = "=0.6.5"
 mimalloc = "=0.1.52"
 serde_json = "=1.0.151"
