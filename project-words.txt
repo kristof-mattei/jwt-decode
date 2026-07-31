@@ -33,7 +33,6 @@ nextest
 Ngla
 nvmrc
 pathbuf
-pids
 PMYR
 postprocessors
 prereleased
