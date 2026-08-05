@@ -4,9 +4,9 @@ appgroup
 appuser
 bkeepers
 buildcache
-Cinstrument
+cinstrument
 cocogitto
-Ctarget
+ctarget
 Ctgu
 cttc
 cves
@@ -38,9 +38,10 @@ postprocessors
 prereleased
 profraw
 Pwas
+pyflakes
 Rakm
-Retag
-Retagging
+retag
+retagging
 RSWI
 rustflags
 samply
@@ -51,9 +52,9 @@ skopeo
 startswith
 striptags
 taiki
-TARGETPLATFORMDASH
+targetplatformdash
 telem
-Tera
+tera
 Tgxy
 topo
 Tqkt
