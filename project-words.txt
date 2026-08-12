@@ -5,7 +5,6 @@ appuser
 bkeepers
 buildcache
 cinstrument
-cocogitto
 ctarget
 Ctgu
 cttc
@@ -59,6 +58,7 @@ Tgxy
 topo
 Tqkt
 trixie
+TRUNC
 uninlined
 unseparated
 usernamehw
